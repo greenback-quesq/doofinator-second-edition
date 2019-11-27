@@ -1,1 +1,3 @@
-Hello!
+Since I was a kid, I have always wanted to be an inventor. Inspiration is a funny thing. My sources of inspiration include real-life (Skunk Works team lead "Kelly" Johnson) and fictional ("Racho" from the Hindi film 3 Idiots) characters. As a child, my favorite villain was always Dr. Doofenshmirtz from the show Phineas and Ferb. Doofenshmirtz, a somewhat pitiful but nonetheless enthusiastic villain, would introduce an invention in each episode. These inventions were as varied as they were ridiculous (Hot Dog Vendor Revenge-inator and Whale Translator-inator, for example). I decided to develop a Doof-inator, which is effectively an mp3 jukebox with an IR receiver for remote actuation. On startup, the Doof-inator plays one of doofenshmirtz's famous "jingles". Jukebox mode is then entered, and a playlist of songs sung by Doofenshmirtz begins to play.
+
+Video: https://www.youtube.com/watch?v=RU2F9mr7Tfs&t=26s

@@ -3,32 +3,33 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <ncurses.h>
 
 // Placeholder for the music player functions
 class MusicPlayer {
 public:
     void begin() {
-        std::cout << "Music player initialized." << std::endl;
+        printw("Music player initialized.\n");
     }
 
     void startPlayingFile(const std::string& file) {
-        std::cout << "Playing file: " << file << std::endl;
+        printw("Playing file: %s\n", file.c_str());
     }
 
     void pausePlaying(bool pause) {
         if (pause) {
-            std::cout << "Music paused." << std::endl;
+            printw("Music paused.\n");
         } else {
-            std::cout << "Music resumed." << std::endl;
+            printw("Music resumed.\n");
         }
     }
 
     void stopPlaying() {
-        std::cout << "Music stopped." << std::endl;
+        printw("Music stopped.\n");
     }
 
     void setVolume(int left, int right) {
-        std::cout << "Volume set to: " << left << ", " << right << std::endl;
+        printw("Volume set to: %d, %d\n", left, right);
     }
 };
 
@@ -42,21 +43,21 @@ int randomNumber;
 bool flag = true;  // necessary for skipping or returning to tracks
 
 void displayMenu() {
-    std::cout << "==================================" << std::endl;
-    std::cout << "       DOOFINATOR JUKEBOX         " << std::endl;
-    std::cout << "==================================" << std::endl;
-    std::cout << "1. Play Next Track" << std::endl;
-    std::cout << "2. Play Previous Track" << std::endl;
-    std::cout << "3. Pause/Resume Track" << std::endl;
-    std::cout << "4. Increase Volume" << std::endl;
-    std::cout << "5. Decrease Volume" << std::endl;
-    std::cout << "6. Show Current Time" << std::endl;
-    std::cout << "Enter a number to select an option: ";
+    printw("==================================\n");
+    printw("       DOOFINATOR JUKEBOX         \n");
+    printw("==================================\n");
+    printw("1. Play Next Track\n");
+    printw("2. Play Previous Track\n");
+    printw("3. Pause/Resume Track\n");
+    printw("4. Increase Volume\n");
+    printw("5. Decrease Volume\n");
+    printw("6. Show Current Time\n");
+    printw("Enter a number to select an option: ");
+    refresh();
 }
 
 void handleUserInput() {
-    int userInput;
-    std::cin >> userInput;
+    int userInput = getch() - '0';
     switch (userInput) {
         case 1:
             count++;
@@ -82,10 +83,10 @@ void handleUserInput() {
             break;
         case 6:
             std::time_t now = std::time(0);
-            std::cout << "Current time: " << std::ctime(&now);
+            printw("Current time: %s", std::ctime(&now));
             break;
         default:
-            std::cout << "Invalid option, please try again." << std::endl;
+            printw("Invalid option, please try again.\n");
             break;
     }
     displayMenu(); // Display the menu again after handling input
@@ -93,6 +94,9 @@ void handleUserInput() {
 
 void setup() {
     std::srand(static_cast<unsigned>(std::time(0)));
+    initscr();
+    cbreak();
+    noecho();
     musicPlayer.begin();
     musicPlayer.setVolume(vol_setting, vol_setting);
     displayMenu(); // Display the menu at startup
@@ -107,5 +111,6 @@ void loop() {
 int main() {
     setup();
     loop();
+    endwin();
     return 0;
 }
